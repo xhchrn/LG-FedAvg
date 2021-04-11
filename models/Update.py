@@ -27,7 +27,10 @@ class LocalUpdate(object):
         self.args = args
         self.loss_func = nn.CrossEntropyLoss()
         self.selected_clients = []
-        self.ldr_train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        self.ldr_train = DataLoader(DatasetSplit(dataset, idxs),
+                                    batch_size=self.args.local_bs,
+                                    shuffle=True,
+                                    num_workers=8)
         self.pretrain = pretrain
 
     def train(self, net, idx=-1, lr=0.1):
@@ -63,7 +66,10 @@ class LocalUpdateMTL(object):
         self.args = args
         self.loss_func = nn.CrossEntropyLoss()
         self.selected_clients = []
-        self.ldr_train = DataLoader(DatasetSplit(dataset, idxs), batch_size=self.args.local_bs, shuffle=True)
+        self.ldr_train = DataLoader(DatasetSplit(dataset, idxs),
+                                    batch_size=self.args.local_bs,
+                                    shuffle=True,
+                                    num_workers=8)
         self.pretrain = pretrain
 
     def train(self, net, lr=0.1, omega=None, W_glob=None, idx=None, w_glob_keys=None):
