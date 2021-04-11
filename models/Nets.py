@@ -112,7 +112,7 @@ def kaiming_normal(w):
         torch.nn.init.kaiming_normal_(w.weight)
 
 
-class ResNet(PrunableNet):
+class ResNet(nn.Module):
     """A residual neural network as originally designed for CIFAR-10."""
 
     class Block(nn.Module):
