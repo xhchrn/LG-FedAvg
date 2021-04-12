@@ -31,6 +31,8 @@ if __name__ == '__main__':
     with open(dict_save_path, 'wb') as handle:
         pickle.dump((dict_users_train, dict_users_test), handle)
 
+    args.milestones = list(map(int, args.milestones.split(',')))
+
     # build model
     net_glob = get_model(args)
     net_glob.train()
@@ -58,7 +60,7 @@ if __name__ == '__main__':
             local = LocalUpdate(args=args, dataset=dataset_train, idxs=dict_users_train[idx])
             net_local = copy.deepcopy(net_glob)
 
-            w_local, loss = local.train(net=net_local.to(args.device))
+            w_local, loss = local.train(net=net_local.to(args.device), lr=lr)
             loss_locals.append(copy.deepcopy(loss))
 
             if w_glob is None:
@@ -68,6 +70,8 @@ if __name__ == '__main__':
                     w_glob[k] += w_local[k]
 
         lr *= args.lr_decay
+        if (iter + 1) in args.milestones:
+            lr *= args.gamma
 
         # update global weights
         for k in w_glob.keys():

@@ -36,7 +36,10 @@ class LocalUpdate(object):
     def train(self, net, idx=-1, lr=0.1):
         net.train()
         # train and update
-        optimizer = torch.optim.SGD(net.parameters(), lr=lr, momentum=0.5)
+        optimizer = torch.optim.SGD(net.parameters(),
+                                    lr=lr,
+                                    momentum=args.momentum,
+                                    weight_decay=args.weight_decay)
 
         epoch_loss = []
         if self.pretrain:
