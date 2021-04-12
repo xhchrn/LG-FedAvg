@@ -22,7 +22,7 @@ def args_parser():
     parser.add_argument('--local_ep_pretrain', type=int, default=0, help="the number of pretrain local ep")
     parser.add_argument('--lr_decay', type=float, default=1.0, help="learning rate decay per round")
     parser.add_argument('--gamma', type=float, default=1.0, help="learning rate decay after reaching milestones")
-    parser.add_argumetn('--milestones', type=str, default='', help="milestones for decaying learning rate")
+    parser.add_argument('--milestones', type=str, default='', help="milestones for decaying learning rate")
 
     # model arguments
     parser.add_argument('--model', type=str, default='mlp', help='model name')
