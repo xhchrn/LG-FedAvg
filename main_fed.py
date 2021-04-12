@@ -37,6 +37,10 @@ if __name__ == '__main__':
     net_glob = get_model(args)
     net_glob.train()
 
+    # load pretrained model
+    if args.load_pretrain:
+        net_glob.load_state_dict(torch.load(args.load_pretrain))
+
     # training
     results_save_path = os.path.join(base_dir, 'fed/results.csv')
 
