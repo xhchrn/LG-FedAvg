@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     # load pretrained model
     if args.load_pretrain:
-        info = net_glob.load_state_dict(torch.load(args.load_pretrain), strict=False)
+        info = net_glob.load_state_dict(torch.load(args.load_pretrain, map_location='cpu'), strict=False)
         print(info)
 
     # training
