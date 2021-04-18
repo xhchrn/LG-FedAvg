@@ -162,7 +162,7 @@ class ResNet(nn.Module):
         self.blocks = nn.Sequential(*blocks)
 
         # Final fc layer. Size = number of filters in last segment.
-        self.fc = nn.Linear(plan[-1][0], outputs)
+        self.fc = Linear(plan[-1][0], outputs)
         # self.criterion = nn.CrossEntropyLoss()
 
         # Initialize.
